@@ -1,98 +1,31 @@
-<h1 align="center">PHP Package Boilerplate</h1>
+## Algorithme Rendue Monnaie en PHP
 
-[![PHP Composer](https://github.com/tomkyle/boilerplate-php/actions/workflows/php.yml/badge.svg)](https://github.com/tomkyle/boilerplate-php/actions/workflows/php.yml)
+**Objectif :** Créer une fonction en PHP qui calcule le nombre minimum de billets et pièces à rendre au client en fonction d'un prix à payer et du montant donné par le client.
 
-**A template repository for PHP package.**
+**Énoncé :**
 
----
+Vous êtes en charge de développer un algorithme pour un système de caisse qui doit rendre la monnaie au client lorsque ce dernier paie un certain montant pour un produit ou un service. L'algorithme doit être écrit en PHP et prendra en compte les billets et pièces suivants pour effectuer le rendu de monnaie :
 
-## Start new project
+**Billets disponibles :** 200€, 100€, 50€, 20€, 10€, 5€
 
-```bash
-$ composer create-project tomkyle/boilerplate-php new-project  
-$ cd new-project
-$ composer install
+**Pièces disponibles :** 2€, 1€, 50cts, 20cts, 10cts, 5cts, 2cts, 1cts
+
+Votre tâche consiste à créer une fonction nommée `rendreMonnaie` qui prendra deux paramètres en entrée :
+
+1. Le prix à payer en euros (un nombre entier ou à virgule flottante).
+2. Le montant donné par le client en euros (un nombre entier ou à virgule flottante).
+
+La fonction devra calculer la somme à rendre et déterminer le nombre minimum de billets et pièces à rendre au client en utilisant les valeurs disponibles listées ci-dessus. L'algorithme devra utiliser les billets et pièces de valeurs croissantes pour minimiser leur nombre tout en rendant la somme exacte.
+
+Enfin, la fonction devra afficher le résultat sous la forme suivante :
+
+```
+Montant à rendre : [montant à rendre en euros] €
+Nombre de [billets/pièces] de [valeur] € : [nombre]
 ```
 
+**Exemple :**
+Supposons que le prix à payer soit 175€ et que le client donne 200€. La fonction devra indiquer qu'il faut rendre 1 billet de 20€ et 1 billet de 5€.
 
-
----
-
-## Requirements and suggestions
-
-| PSR standard                        | require                                                      | suggest                                                      |
-| ----------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| PSR-3 Logger implementation         | [psr/log](https://packagist.org/packages/psr/log)            | [Monolog Logger](https://github.com/Seldaek/monolog)         |
-| PSR-6 Cache Implementation          | [psr/cache](https://packagist.org/packages/psr/cache)        | [Symfony Cache component](https://symfony.com/components/Cache) |
-| PSR-17 HTTP factory* implementation | [psr/http-factory](https://packagist.org/packages/psr/http-factory) | [nyholm/psr7](nyholm/psr7)                                   |
-| PSR-18 HTTP client                  | [psr/http-client](https://packagist.org/packages/psr/http-client) | [Guzzle 7](https://packagist.org/packages/guzzlehttp/guzzle) |
-
-
-```bash
-$ composer require monolog/monolog
-$ composer require symfony/cache
-$ composer require nyholm/psr7
-$ composer require guzzlehttp/guzzle
-```
-
-
-
----
-
-## Development
-
-### Run all tests
-
-This packages has predefined test setups for code quality, code readability and unit tests. Check them out at the `scripts` section of **[composer.json](./composer.json)**.
-
-```bash
-$ composer test
-# ... which includes
-$ composer phpstan
-$ composer phpcs
-$ composer phpunit
-```
-
-### Unit tests
-
-Default configuration is **[phpunit.xml.dist](./phpunit.xml.dist).** Create a custom **phpunit.xml** to apply your own settings. 
-Also visit [phpunit.readthedocs.io](https://phpunit.readthedocs.io/) · [Packagist](https://packagist.org/packages/phpunit/phpunit)
-
-```bash
-$ composer phpunit
-# ... or
-$ vendor/bin/phpunit
-```
-
-### PhpStan
-
-Default configuration is **[phpstan.neon.dist](./phpstan.neon.dist).** Create a custom **phpstan.neon** to apply your own settings. Also visit [phpstan.org](https://phpstan.org/) · [GitHub](https://github.com/phpstan/phpstan) · [Packagist](https://packagist.org/packages/phpstan/phpstan)
-
-```bash
-$ composer phpstan
-# ... which includes
-$ vendor/bin/phpstan analyse
-```
-
-### PhpCS
-
-Default configuration is **[.php-cs-fixer.dist.php](./.php-cs-fixer.dist.php).** Create a custom **.php-cs-fixer.php** to apply your own settings. Also visit [cs.symfony.com](https://cs.symfony.com/) ·  [GitHub](https://github.com/FriendsOfPHP/PHP-CS-Fixer) · [Packagist](https://packagist.org/packages/friendsofphp/php-cs-fixer)
-
-```bash
-$ composer phpcs
-# ... which aliases
-$ vendor/bin/php-cs-fixer fix --verbose --diff --dry-run
-```
-
-Apply all CS fixes:
-
-```bash
-$ composer phpcs:apply
-# ... which aliases 
-$ vendor/bin/php-cs-fixer fix --verbose --diff
-```
-
-
-
-
-
+**Note :**
+Assurez-vous que le montant donné par le client est suffisant pour couvrir le prix à payer. Vous pouvez supposer que les valeurs fournies seront cohérentes et positives.
